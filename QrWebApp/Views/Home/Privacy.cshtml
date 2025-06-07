@@ -1,6 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="min-vh-100 w-100 d-flex flex-column align-items-center justify-content-center position-relative" style="background:linear-gradient(120deg,#f8fafc 0%,#c2e9fb 100%);overflow-x:hidden;">
+    <div class="position-absolute top-0 start-0 w-100" style="height:260px;z-index:0;background:linear-gradient(120deg,#6366f1 0%,#60a5fa 100%);clip-path:ellipse(80% 100% at 50% 0);"></div>
+    <div class="w-100 d-flex flex-column align-items-center justify-content-center" style="max-width:600px;z-index:1;">
+        <div class="card border-0 shadow-lg rounded-4 p-4 mb-4 bg-white bg-opacity-95 animate__animated animate__fadeInDown" style="backdrop-filter:blur(2px);">
+            <div class="card-body">
+                <h1 class="display-5 fw-bold mb-4 text-center text-primary" style="letter-spacing:1px;text-shadow:0 2px 8px #c2e9fb;">
+                    <i class="bi bi-shield-lock me-2"></i>@ViewData["Title"]
+                </h1>
+                <p class="fs-5 text-muted text-center mb-0">
+                    Questa pagina descrive la privacy policy del sito.<br />
+                    <span class="d-block mt-2">Aggiorna questo testo con le informazioni richieste dal GDPR o dalla tua policy aziendale.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

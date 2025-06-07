@@ -5,43 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QrWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QrWebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(120deg,#f8fafc 0%,#c2e9fb 100%);
+        }
+        .navbar-glass {
+            background: rgba(255,255,255,0.85)!important;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+            backdrop-filter: blur(8px);
+        }
+        .footer-glass {
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 -2px 16px 0 rgba(31,38,135,0.07);
+            backdrop-filter: blur(8px);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.7rem;
+            color: #6366f1 !important;
+            text-shadow: 0 2px 8px #c2e9fb;
+        }
+        .nav-link.active, .nav-link:focus, .nav-link:hover {
+            color: #6366f1 !important;
+            font-weight: bold;
+            background: linear-gradient(90deg,#6366f1 0%,#60a5fa 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer a {
+            color: #6366f1;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QrWebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        <nav class="navbar navbar-expand-lg navbar-glass shadow-sm py-3 animate__animated animate__fadeInDown">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-qr-code-scan fs-2"></i> QrWebApp
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door me-1"></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Archivio">Archivio QRCode salvati</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Archivio" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Archivio"><i class="bi bi-archive me-1"></i>Archivio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="bi bi-shield-lock me-1"></i>Privacy</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - QrWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <main class="flex-fill d-flex flex-column justify-content-center align-items-center w-100 p-0">
+        @RenderBody()
+    </main>
+    <footer class="footer-glass text-muted py-3 mt-auto animate__animated animate__fadeInUp">
+        <div class="container-fluid px-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <span>&copy; 2025 - QrWebApp</span>
+            <span>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy"><i class="bi bi-shield-lock me-1"></i>Privacy</a>
+            </span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
